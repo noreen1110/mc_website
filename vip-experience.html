@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VIP Experience | MC Summit 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Style.css?v=vip-panel-1" />
+  <script src="Script.js?v=vip-panel-1" defer></script>
+</head>
+<body>
+  <header class="navbar">
+    <a class="logo-wrap" href="index.html" aria-label="MC Summit home">
+      <img src="Assets/logo.png" alt="MC Summit Logo" class="logo">
+      <img src="Assets/logo_2.png" alt="MC Summit Logo" class="mobile-logo">
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="main-menu" id="main-menu" aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a href="index.html#about">About us</a></li>
+        <li><a href="index.html#agenda">Agenda</a></li>
+        <li><a href="index.html#speakers">Speakers</a></li>
+        <li class="nav-item nav-experience is-active">
+          <a href="#experience-menu" class="experience-menu-toggle" aria-haspopup="true" aria-expanded="false">Experiences</a>
+          <ul class="experience-dropdown" id="experience-menu">
+            <li><a href="indoor-expo.html">Indoor Expo Experience</a></li>
+            <li><a href="outdoor-expo.html">Outdoor Expo Experience</a></li>
+            <li><a class="is-active" href="vip-experience.html">VIP Experience</a></li>
+          </ul>
+        </li>
+      </ul>
+      <a href="register.html" class="ticket-btn menu-ticket-btn">Get Tickets</a>
+    </nav>
+
+    <a href="register.html" class="ticket-btn">Get Tickets</a>
+  </header>
+
+  <main>
+    <section class="vip-hero" aria-label="VIP outdoor lounge">
+      <div class="vip-hero-image"></div>
+    </section>
+
+    <section class="vip-title">
+      <h1>VIP Experience</h1>
+    </section>
+
+    <section class="vip-experience-section">
+      <div class="vip-experience-grid">
+        <div class="vip-art-panel">
+          <img class="vip-lounge-image" src="Assets/vip-lounge.png" alt="Premium VIP lounge networking at sunset">
+        </div>
+
+        <div class="vip-copy">
+          <p>
+            Designed for industry leaders, creatives, and decision-makers looking to experience
+            MC at a deeper level. The VIP pass unlocks premium spaces, exclusive conversations,
+            and elevated networking experiences throughout the event.
+          </p>
+
+          <p>Your VIP Access Includes:</p>
+
+          <ul>
+            <li>Full access to all speaker sessions</li>
+            <li>VIP lounge and priority seating</li>
+            <li>Backstage networking opportunities</li>
+            <li>Invitation-only networking events</li>
+            <li>Priority support during the event</li>
+            <li>Exclusive access to premium experiences</li>
+          </ul>
+
+          <a class="vip-pass-button" href="register.html">Reserve Your VIP Pass</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="logo-wrap footer-logo-wrap">
+      <img src="Assets/logo.png" alt="MC Summit Logo" class="logo footer-logo">
+    </div>
+    <div class="footer-links">
+      <a href="#">FAQ</a>
+      <a href="#">Cookie Policy</a>
+      <a href="#">Contact us</a>
+      <a href="#">MC Brand Guidelines</a>
+      <a href="#">Venue</a>
+      <a href="#">Sponsorship</a>
+    </div>
+  </footer>
+</body>
+</html>
