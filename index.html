@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="Style.css?v=vip-panel-1" />
-  <script src="Script.js?v=vip-panel-1" defer></script>
+  <link rel="stylesheet" href="Style.css?v=speaker-modal-3" />
+  <script src="Script.js?v=speaker-modal-3" defer></script>
 </head>
 <body>
   <header class="navbar">
@@ -27,7 +27,7 @@
       <ul class="nav-links">
         <li><a href="#about">About us</a></li>
         <li><a href="#agenda">Agenda</a></li>
-        <li><a href="#speakers">Speakers</a></li>
+        <li><a href="speakers.html">Speakers</a></li>
         <li class="nav-item nav-experience">
           <a href="#experience-menu" class="experience-menu-toggle" aria-haspopup="true" aria-expanded="false">Experiences</a>
           <ul class="experience-dropdown" id="experience-menu">
@@ -37,17 +37,17 @@
           </ul>
         </li>
       </ul>
-      <a href="register.html" class="ticket-btn menu-ticket-btn">Get Tickets</a>
+      <a href="./register.html" class="ticket-btn menu-ticket-btn">Get Tickets</a>
     </nav>
 
-    <a href="register.html" class="ticket-btn">Get Tickets</a>
+    <a href="./register.html" class="ticket-btn">Get Tickets</a>
   </header>
 
   <main>
     <section class="hero-section gradient-panel" id="tickets">
       <div class="hero-content">
         <img src="Assets/hero.png" alt="Audience watching a keynote at MC Summit 2026" class="hero-image">
-        <a class="register-btn" href="register.html">Register Now</a>
+        <a class="register-btn" href="./register.html">Register Now</a>
 
         <div class="countdown" aria-label="Countdown to MC Summit 2026" data-event-date="2026-10-27T09:00:00-07:00">
           <div class="countdown-item" data-unit="days"><strong data-value>357</strong> days</div>
@@ -93,7 +93,7 @@
         <h2 class="speaker-title">Meet The Speakers</h2>
 
         <div class="speaker-grid">
-          <article class="speaker-card">
+          <article class="speaker-card" tabindex="0">
             <img src="Assets/speaker-1.png" alt="Mike Delgado">
             <div class="speaker-overlay">
               <h3>Mike Delgado</h3>
@@ -101,7 +101,7 @@
             </div>
           </article>
 
-          <article class="speaker-card">
+          <article class="speaker-card" tabindex="0">
             <img src="Assets/ speaker-2.png" alt="Sofia Mitchell">
             <div class="speaker-overlay">
               <h3>Sofia Mitchell</h3>
@@ -109,7 +109,7 @@
             </div>
           </article>
 
-          <article class="speaker-card">
+          <article class="speaker-card" tabindex="0">
             <img src="Assets/ speaker-3.png" alt="David Johnson">
             <div class="speaker-overlay">
               <h3>David Johnson</h3>
@@ -118,7 +118,7 @@
           </article>
         </div>
 
-        <a class="outline-btn center-btn" href="#speakers">View all Speakers</a>
+        <a class="outline-btn center-btn" href="speakers.html">View all Speakers</a>
       </div>
     </section>
   </main>

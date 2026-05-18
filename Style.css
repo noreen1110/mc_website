@@ -165,13 +165,14 @@ img {
   z-index: -2;
   content: "";
   background-image: url("Assets/gradient-bg.png");
-  background-size: 128% 128%;
+  background-size: cover;
   background-position: 50% 50%;
   filter: blur(34px) saturate(1.24) contrast(1.08);
   opacity: 0.98;
   transform: scale(1.28);
-  animation: gradient-float 6.5s cubic-bezier(0.45, 0, 0.2, 1) infinite alternate;
-  will-change: transform, background-position, filter;
+  animation: gradient-float 14s ease-in-out infinite alternate;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .gradient-panel::after {
@@ -188,41 +189,32 @@ img {
   mix-blend-mode: multiply;
   opacity: 0.78;
   transform: scale(1.25) rotate(0.001deg);
-  animation: gradient-morph 5.25s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse;
-  will-change: transform, background-position, opacity;
+  animation: gradient-morph 18s ease-in-out infinite alternate-reverse;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 @keyframes gradient-float {
   0% {
-    background-position: 0% 38%;
-    filter: blur(32px) saturate(1.2) contrast(1.04);
-    transform: scale(1.28) translate3d(-7%, -4%, 0) rotate(-4deg);
+    transform: translate3d(-3%, -2%, 0) scale(1.3) rotate(-2deg);
   }
 
   50% {
-    background-position: 64% 66%;
-    filter: blur(42px) saturate(1.36) contrast(1.12);
-    transform: scale(1.42) translate3d(4%, 5%, 0) rotate(2.5deg);
+    transform: translate3d(2%, 2.5%, 0) scale(1.35) rotate(1.5deg);
   }
 
   100% {
-    background-position: 100% 34%;
-    filter: blur(36px) saturate(1.28) contrast(1.08);
-    transform: scale(1.34) translate3d(7%, -5%, 0) rotate(5deg);
+    transform: translate3d(3%, -2.5%, 0) scale(1.32) rotate(2deg);
   }
 }
 
 @keyframes gradient-morph {
   0% {
-    background-position: 0% 72%, 100% 38%;
-    opacity: 0.62;
-    transform: scale(1.26) translate3d(7%, -6%, 0) rotate(7deg);
+    transform: translate3d(3%, -2%, 0) scale(1.26) rotate(3deg);
   }
 
   100% {
-    background-position: 100% 24%, 0% 78%;
-    opacity: 0.86;
-    transform: scale(1.44) translate3d(-7%, 7%, 0) rotate(-6deg);
+    transform: translate3d(-3%, 3%, 0) scale(1.33) rotate(-3deg);
   }
 }
 
@@ -443,11 +435,14 @@ img {
   border: 2px solid rgba(6, 21, 69, 0.22);
   overflow: hidden;
   background: rgba(255, 255, 255, 0.24);
+  cursor: pointer;
   transition: transform 240ms ease;
 }
 
-.speaker-card:hover {
+.speaker-card:hover,
+.speaker-card:focus {
   transform: translateY(-10px);
+  outline: none;
 }
 
 .speaker-card img {
@@ -493,6 +488,102 @@ img {
   width: 338px;
   margin: 72px auto 0;
   display: flex;
+}
+
+.all-speakers-section {
+  min-height: 1000px;
+  padding: 160px 0 92px;
+}
+
+.all-speakers-grid {
+  position: relative;
+  z-index: 1;
+  width: min(1580px, calc(100% - 150px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 138px 62px;
+}
+
+.all-speakers-grid .speaker-card {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.all-speakers-grid .speaker-card img {
+  aspect-ratio: 496 / 552;
+  object-fit: cover;
+}
+
+.speaker-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: block;
+  padding: 40px;
+  background: transparent;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.speaker-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.speaker-modal-card {
+  position: absolute;
+  top: var(--speaker-modal-top, 50%);
+  left: var(--speaker-modal-left, 50%);
+  width: min(620px, 92vw);
+  padding: 42px 38px 44px;
+  color: var(--blue);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(6, 21, 69, 0.24);
+  box-shadow: 0 24px 70px rgba(6, 21, 69, 0.2);
+  transform: translate(-50%, 18px) scale(0.98);
+  transition: transform 220ms ease;
+}
+
+.speaker-modal.is-open .speaker-modal-card {
+  transform: translate(-50%, 0) scale(1);
+}
+
+.speaker-modal-card h2 {
+  margin: 0 0 6px;
+  font-size: clamp(26px, 2.1vw, 36px);
+  line-height: 1.1;
+}
+
+.speaker-modal-card h3 {
+  margin: 0 0 34px;
+  font-size: clamp(18px, 1.4vw, 25px);
+  line-height: 1.18;
+  font-weight: 600;
+}
+
+.speaker-modal-card p {
+  margin: 0;
+  font-size: clamp(14px, 1vw, 17px);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.speaker-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+  background: transparent;
+  border: 0;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
 }
 
 .footer {
@@ -1641,6 +1732,30 @@ img {
     width: 210px;
     min-height: 74px;
     margin: 12px auto 0;
+  }
+
+  .all-speakers-section {
+    padding: 72px 0 64px;
+  }
+
+  .all-speakers-grid {
+    width: min(100% - 44px, 640px);
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .all-speakers-grid .speaker-card img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .speaker-modal {
+    padding: 130px 22px 32px;
+  }
+
+  .speaker-modal-card {
+    top: 130px;
+    left: 50%;
+    padding: 34px 26px 34px;
   }
 
   .vip-hero {

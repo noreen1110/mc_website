@@ -170,3 +170,73 @@ if (carouselTrack && carouselPrev && carouselNext) {
   window.addEventListener("resize", updateCarousel);
   updateCarousel();
 }
+
+const speakerModal = document.querySelector(".speaker-modal");
+const speakerModalCard = document.querySelector(".speaker-modal-card");
+const speakerModalClose = document.querySelector(".speaker-modal-close");
+const speakerModalName = document.querySelector("#speaker-modal-name");
+const speakerModalTitle = document.querySelector(".speaker-modal-card h3");
+const speakerModalDescription = document.querySelector(".speaker-modal-card p");
+const speakerCards = document.querySelectorAll(".all-speakers-grid .speaker-card");
+
+if (speakerModal && speakerModalCard && speakerCards.length > 0) {
+  let lastFocusedSpeaker = null;
+
+  const setSpeakerModalOpen = (isOpen) => {
+    speakerModal.classList.toggle("is-open", isOpen);
+    speakerModal.setAttribute("aria-hidden", String(!isOpen));
+    document.body.classList.toggle("speaker-modal-open", isOpen);
+
+    if (isOpen) {
+      speakerModalClose?.focus();
+    } else if (lastFocusedSpeaker) {
+      lastFocusedSpeaker.focus();
+    }
+  };
+
+  const openSpeakerModal = (card) => {
+    lastFocusedSpeaker = card;
+    speakerModalName.textContent = card.dataset.speakerName || "";
+    speakerModalTitle.textContent = card.dataset.speakerTitle || "";
+    speakerModalDescription.textContent = card.dataset.speakerDescription || "";
+
+    const cardRect = card.getBoundingClientRect();
+    const isMobile = window.matchMedia("(max-width: 1100px)").matches;
+
+    if (!isMobile) {
+      const left = Math.min(window.innerWidth - 360, cardRect.left + cardRect.width * 0.88);
+      const top = Math.max(130, cardRect.top + cardRect.height * 0.16);
+      speakerModal.style.setProperty("--speaker-modal-left", `${left}px`);
+      speakerModal.style.setProperty("--speaker-modal-top", `${top}px`);
+    } else {
+      speakerModal.style.removeProperty("--speaker-modal-left");
+      speakerModal.style.removeProperty("--speaker-modal-top");
+    }
+
+    setSpeakerModalOpen(true);
+  };
+
+  speakerCards.forEach((card) => {
+    card.addEventListener("click", () => openSpeakerModal(card));
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openSpeakerModal(card);
+      }
+    });
+  });
+
+  speakerModalClose?.addEventListener("click", () => setSpeakerModalOpen(false));
+
+  speakerModal.addEventListener("click", (event) => {
+    if (!speakerModalCard.contains(event.target)) {
+      setSpeakerModalOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && speakerModal.classList.contains("is-open")) {
+      setSpeakerModalOpen(false);
+    }
+  });
+}
